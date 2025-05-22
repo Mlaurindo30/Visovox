@@ -2,27 +2,44 @@ name: CI
 
 on:
   push:
-    branches: [ main, develop ]
+    branches: [main]
   pull_request:
-    branches: [ main, develop ]
+    branches: [main]
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Set up Python
+      - name: Checkout código
+        uses: actions/checkout@v3
+
+      - name: Configurar Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'
-      - name: Install Poetry
-        run: pip install poetry
-      - name: Install dependencies
-        run: poetry install
-      - name: Run tests
-        run: poetry run pytest --cov=src
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v3
+
+      - name: Instalar Poetry
+        run: |
+          pip install poetry
+
+      - name: Instalar dependências
+        run: |
+          poetry install
+
+      - name: Rodar testes e cobertura
+        run: |
+          poetry run pytest --cov=src --cov-report=xml
+
+      - name: Upload do relatório de cobertura
+        uses: actions/upload-artifact@v3
         with:
-          files: ./coverage.xml
-          fail_ci_if_error: false 
+          name: cobertura-xml
+          path: coverage.xml
+
+      - name: Build Docker (API)
+        run: |
+          docker build -f Dockerfile_api -t visiovox-api:ci .
+
+      - name: Build Docker (Worker)
+        run: |
+          docker build -f Dockerfile_worker -t visiovox-worker:ci . 
