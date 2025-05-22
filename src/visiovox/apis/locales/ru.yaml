@@ -1,0 +1,21 @@
+errors:
+  internal_server_error: "Внутренняя ошибка сервера"
+  invalid_credentials: "Неверные учетные данные"
+  not_authenticated: "Не авторизован"
+  inactive_user: "Пользователь неактивен или заблокирован"
+  not_found: "Ресурс не найден"
+  rate_limited: "Слишком много запросов. Пожалуйста, попробуйте позже."
+
+success:
+  operation_completed: "Операция успешно завершена"
+  user_authenticated: "Пользователь аутентифицирован"
+  profile_loaded: "Профиль успешно загружен"
+
+auth:
+  login_success: "Добро пожаловать, {username}!"
+  logout_success: "Вы вышли из системы."
+  registration_success: "Аккаунт успешно создан."
+
+generic:
+  welcome: "Добро пожаловать в VisioVox Fusion, {username}!"
+  goodbye: "До свидания, до скорой встречи!" 

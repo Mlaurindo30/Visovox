@@ -1,0 +1,15 @@
+# Gerado via poetry export
+fastapi
+uvicorn
+celery
+redis
+pydantic
+python-multipart
+pytest
+pytest-cov
+pytest-mock
+requests
+pillow
+librosa
+# Adicione PyTorch, soundfile, etc. conforme necessário
+httpx 

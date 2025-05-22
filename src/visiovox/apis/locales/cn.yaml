@@ -1,0 +1,21 @@
+errors:
+  internal_server_error: "服务器内部错误"
+  invalid_credentials: "凭证无效"
+  not_authenticated: "未认证"
+  inactive_user: "用户未激活或被封禁"
+  not_found: "未找到资源"
+  rate_limited: "请求过多，请稍后再试。"
+
+success:
+  operation_completed: "操作成功完成"
+  user_authenticated: "用户已认证"
+  profile_loaded: "个人资料加载成功"
+
+auth:
+  login_success: "欢迎, {username}!"
+  logout_success: "您已退出登录。"
+  registration_success: "账号创建成功。"
+
+generic:
+  welcome: "欢迎来到VisioVox Fusion, {username}!"
+  goodbye: "再见，欢迎再次使用！" 

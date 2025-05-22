@@ -1,0 +1,51 @@
+services:
+  api:
+    build: .
+    image: visiovox-api:gpu
+    container_name: visiovox_api_gpu
+    environment:
+      - ENV=production
+      - NVIDIA_VISIBLE_DEVICES=all
+      - CUDA_VISIBLE_DEVICES=0
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+      - /tmp/uploads:/tmp/uploads
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    depends_on:
+      - redis
+
+  celery:
+    build: .
+    image: visiovox-celery:gpu
+    container_name: visiovox_celery_gpu
+    command: poetry run celery -A src.visiovox.apis.celery_tasks worker --loglevel=info
+    environment:
+      - ENV=production
+      - NVIDIA_VISIBLE_DEVICES=all
+      - CUDA_VISIBLE_DEVICES=0
+    volumes:
+      - .:/app
+      - /tmp/uploads:/tmp/uploads
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:7.2
+    container_name: visiovox_redis
+    ports:
+      - "6379:6379" 

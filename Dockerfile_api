@@ -1,0 +1,37 @@
+# Dockerfile_api — VisioVox Fusion API (FastAPI, Uvicorn, GPU-Ready)
+
+FROM nvidia/cuda:12.1.0-cudnn8-runtime-ubuntu22.04
+
+# Variáveis de ambiente básicas
+ENV LANG=C.UTF-8
+ENV LC_ALL=C.UTF-8
+ENV PYTHONUNBUFFERED=1
+ENV POETRY_VERSION=1.7.1
+
+WORKDIR /app
+ENV PYTHONPATH=/app
+
+# Instale dependências do sistema
+RUN apt-get update && \
+    apt-get install -y python3.10 python3.10-venv python3.10-distutils \
+    python3-pip ffmpeg libsm6 libxext6 libgl1-mesa-glx \
+    build-essential git wget curl && \
+    rm -rf /var/lib/apt/lists/*
+
+# Instale Poetry
+RUN pip3 install --no-cache-dir poetry==$POETRY_VERSION
+
+# Copie arquivos do projeto
+COPY pyproject.toml poetry.lock* requirements.txt* ./
+RUN poetry install --no-root --no-interaction --only main
+
+COPY . .
+
+# [Opcional] Instalar PyTorch CUDA (ajuste para sua GPU/plataforma se necessário)
+# RUN poetry run pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+
+# Exponha a porta da API
+EXPOSE 8000
+
+# Comando de inicialização
+CMD ["poetry", "run", "uvicorn", "src.visiovox.apis.main:app", "--host", "0.0.0.0", "--port", "8000"]

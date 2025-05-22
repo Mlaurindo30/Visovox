@@ -1,0 +1,21 @@
+errors:
+  internal_server_error: "Internal server error"
+  invalid_credentials: "Invalid credentials"
+  not_authenticated: "Not authenticated"
+  inactive_user: "User is inactive or banned"
+  not_found: "Resource not found"
+  rate_limited: "Too many requests. Please try again later."
+
+success:
+  operation_completed: "Operation completed successfully"
+  user_authenticated: "User authenticated"
+  profile_loaded: "Profile loaded successfully"
+
+auth:
+  login_success: "Welcome, {username}!"
+  logout_success: "You have been logged out."
+  registration_success: "Account created successfully."
+
+generic:
+  welcome: "Welcome to VisioVox Fusion, {username}!"
+  goodbye: "Goodbye, see you soon!" 

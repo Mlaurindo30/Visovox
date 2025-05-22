@@ -1,0 +1,12 @@
+# Arquivos e diretórios ignorados pelo Docker
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+build/
+dist/
+.eggs/
+*.egg-info/
+.env
+.venv 

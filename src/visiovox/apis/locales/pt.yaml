@@ -1,0 +1,21 @@
+errors:
+  internal_server_error: "Erro interno do servidor"
+  invalid_credentials: "Credenciais inválidas"
+  not_authenticated: "Não autenticado"
+  inactive_user: "Usuário inativo ou banido"
+  not_found: "Recurso não encontrado"
+  rate_limited: "Muitas requisições. Tente novamente mais tarde."
+
+success:
+  operation_completed: "Operação concluída com sucesso"
+  user_authenticated: "Usuário autenticado"
+  profile_loaded: "Perfil carregado com sucesso"
+
+auth:
+  login_success: "Bem-vindo, {username}!"
+  logout_success: "Você saiu da conta."
+  registration_success: "Conta criada com sucesso."
+
+generic:
+  welcome: "Bem-vindo ao VisioVox Fusion, {username}!"
+  goodbye: "Até logo, volte sempre!" 
